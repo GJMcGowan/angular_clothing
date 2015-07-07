@@ -1,0 +1,25 @@
+{
+  "name": "Deloitte_Test2",
+  "version": "0.0.0",
+  "authors": [
+    "GJMcGowan <gemcgow@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "bootstrap": "~3.3.5",
+    "angular": "~1.4.2",
+    "angular-resource": "~1.4.2"
+  },
+  "devDependencies": {
+    "angular-mocks": "~1.4.2",
+    "angular-route": "~1.4.2"
+  }
+}
