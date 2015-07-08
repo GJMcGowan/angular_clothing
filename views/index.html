@@ -15,7 +15,11 @@
     <div class="cart">
       Shopping Cart: 
       <p ng-hide="ctrl.cartList.length">Empty</p>
-      <p ng-repeat="cartItems in ctrl.cartList">{{cartItems.name}}</p>
+      <div ng-repeat="cartItems in ctrl.cartList">
+        <p>{{cartItems.name}}
+        <button ng-click="ctrl.removeProduct(item)" class="btn removeProduct">Remove Product</button>
+        </p>
+      </div>
     </div>
     <br>
     <ul class="list-group" ng-repeat="category in ctrl.productList">
@@ -28,7 +32,7 @@
           {{item.price}}
           Quantity:
           {{item.quantity}}
-          <button ng-click="ctrl.addProduct(item)" class="btn">Add to Cart</button>
+          <button ng-click="ctrl.addProduct(item)" class="btn productButton">Add to Cart</button>
         </li>
         <br>
       </ul>

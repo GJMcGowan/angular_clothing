@@ -16,7 +16,14 @@ describe('Clothes Shopping Site', function() {
   });
 
   it('can add a product to the shopping cart', function() {
-    element(by.css(".btn")).click();
+    element(by.css(".productButton")).click();
     expect(element(by.css(".cart")).getText()).toContain("Suede Shoes")
+  });
+
+  it('can remove a product from the shopping cart', function() {
+    element(by.css(".productButton")).click();
+    expect(element(by.css(".cart")).getText()).toContain("Suede Shoes")
+    element(by.css(".removeProduct")).click();
+    expect(element(by.css(".cart")).getText()).toContain("Empty")
   });
 });

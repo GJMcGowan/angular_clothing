@@ -36,4 +36,8 @@ clothesShop.controller('ClothesShopController', [function() {
     self.cartList.push(item)
   };
 
+  self.removeProduct = function(item) {
+    var index = self.cartList.indexOf(item)
+    self.cartList.splice(index, 1);
+  };
 }]);
