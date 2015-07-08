@@ -19,6 +19,11 @@
         <p>{{cartItems.name}}
         <button ng-click="ctrl.removeProduct(cartItems)" class="btn removeProduct">Remove Product</button>
         </p>
+        <div ng-repeat="error in ctrl.errorList" class="errors">
+          <li>
+            {{error}}
+          </li>
+        </div>
       </div>
       <p>Total: {{ctrl.cartPrice}}</p>
       <p ng-show="ctrl.cartList.length" class="vouchers">

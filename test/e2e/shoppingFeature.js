@@ -49,7 +49,13 @@ describe('Clothes Shopping Site', function() {
   });
 
   it('£10 vouchers only usable when spend is over £50', function() {
+    element(by.css(".productButton")).click();
+    element(by.css("#voucher10")).click();
+    expect(element(by.css("")))
 
+    element(by.css(".productButton")).click();
+    element(by.css("#voucher10")).click();
+    expect(element(by.css(".cart")).getText()).toContain("Total: 74")
   });
 
   it('£15 vouchers only usable when spend is over £75 + bought footwear', function() {
@@ -59,5 +65,6 @@ describe('Clothes Shopping Site', function() {
 
 // Needs to be able to deal with multiples of each item without angular just erroring
 
-
 // Vouchers need to be worked out better, as opposed to just being a kludge of rules.
+
+// Get rid of the locator warnings

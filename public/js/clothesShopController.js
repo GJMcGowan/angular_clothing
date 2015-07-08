@@ -7,6 +7,7 @@ clothesShop.controller('ClothesShopController', [function() {
   self.voucher5 = true
   self.voucher10 = true
   self.voucher15 = true
+  self.errorList = []
 
   self.productList = {
     "womensShoes": [{name: "Suede Shoes, Blue", price: 42.00, quantity: 4},
@@ -47,10 +48,31 @@ clothesShop.controller('ClothesShopController', [function() {
 
   self.applyVoucher = function(voucher) {
     if(voucher === 5) {
-      if(self.voucher5) {
-        self.cartPrice -= voucher;
-        self.voucher5 = false
+      self.cartPrice -= voucher;
+      self.voucher5 = false;
+    };
+    if(voucher === 10) {
+      if(self.voucher10 === true) {
+        if(self.cartPrice >= 50) {
+          self.cartPrice -= voucher;
+          self.voucher10 = false;
+        } else {
+          self.errorList.push("You need at least £50 of items to use that voucher")
+        };
       };
     };
+    if(voucher === 15) {
+      if(self.voucher15 === true) {
+        if(self.cartPrice >= 75) {
+          self.cartPrice -= voucher;
+          self.voucher15 = false;   
+        } else {
+          self.errorList.push("You need at least £75 of items to use that voucher")
+        };;
+      };
+    };
+  };
+
+  self.removeVouchers = function() {
   };
 }]);
