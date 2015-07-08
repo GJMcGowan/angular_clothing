@@ -8,7 +8,7 @@ describe('Clothes Shopping Site', function() {
   });
 
   it('has a list of products, with their price, category etc.', function() {
-    expect(element(by.css(".Items")).getText()).toContain("Suede Shoes");
+    expect(element.all(by.css(".Items")).first().getText()).toContain("Suede Shoes");
   });
 
   it('has an empty shopping cart when the site loads', function() {
@@ -16,30 +16,30 @@ describe('Clothes Shopping Site', function() {
   });
 
   it('can add a product to the shopping cart', function() {
-    element(by.css(".productButton")).click();
+    element.all(by.css(".productButton")).first().click();
     expect(element(by.css(".cart")).getText()).toContain("Suede Shoes")
   });
 
   it('can remove a product from the shopping cart', function() {
-    element(by.css(".productButton")).click();
+    element.all(by.css(".productButton")).first().click();
     element(by.css(".removeProduct")).click();
     expect(element(by.css(".cart")).getText()).toContain("Empty")
   });
 
   it('can view the total price for products in the shopping cart', function() {
-    element(by.css(".productButton")).click();
+    element.all(by.css(".productButton")).first().click();
     expect(element(by.css(".cart")).getText()).toContain("Total: 42");
   });
 
   it('can apply a discount to the basket', function() {
-    element(by.css(".productButton")).click();
+    element.all(by.css(".productButton")).first().click();
     expect(element(by.css(".cart")).getText()).toContain("Total: 42");
     element(by.css("#voucher5")).click();
     expect(element(by.css(".cart")).getText()).toContain("Total: 37");
   });
 
   it('vouchers can only be applied once', function() {
-    element(by.css(".productButton")).click();
+    element.all(by.css(".productButton")).first().click();
     element(by.css("#voucher5")).click();
     expect(element(by.css("#voucher5")).isDisplayed()).not.toBeTruthy();
   });
@@ -49,22 +49,16 @@ describe('Clothes Shopping Site', function() {
   });
 
   it('£10 vouchers only usable when spend is over £50', function() {
-    element(by.css(".productButton")).click();
+    element.all(by.css(".productButton")).first().click();
     element(by.css("#voucher10")).click();
-    // There is a synchronisation issue that prevents this from working
-    // expect(element(by.css("error10")).getText()).toContain("You need at least £50 of items to use that voucher")
-    element(by.css(".productButton")).click();
+    // Intended to test, but there are synchronisation problems
+    // expect(element(by.css(".error10")).getText()).toContain("You need at least £50 of items to use that voucher")
+    element.all(by.css(".productButton")).first().click();
     element(by.css("#voucher10")).click();
     expect(element(by.css(".cart")).getText()).toContain("Total: 74")
   });
 
   it('£15 vouchers only usable when spend is over £75 + bought footwear', function() {
-
+    
   });
 });
-
-// Needs to be able to deal with multiples of each item without angular just erroring
-
-// Vouchers need to be worked out better, as opposed to just being a kludge of rules.
-
-// Get rid of the locator warnings

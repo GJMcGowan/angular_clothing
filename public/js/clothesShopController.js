@@ -74,6 +74,6 @@ clothesShop.controller('ClothesShopController', ['Flash', function(Flash) {
   };
 
   self.removeVouchers = function() {
-
+    
   };
 }]);
