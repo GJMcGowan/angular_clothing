@@ -37,6 +37,27 @@ describe('Clothes Shopping Site', function() {
     element(by.css("#voucher5")).click();
     expect(element(by.css(".cart")).getText()).toContain("Total: 37");
   });
+
+  it('vouchers can only be applied once', function() {
+    element(by.css(".productButton")).click();
+    element(by.css("#voucher5")).click();
+    expect(element(by.css("#voucher5")).isDisplayed()).not.toBeTruthy();
+  });
+
+  it('vouchers are not displayed when basket is empty', function() {
+    expect(element(by.css(".vouchers")).isDisplayed()).not.toBeTruthy();
+  });
+
+  it('£10 vouchers only usable when spend is over £50', function() {
+
+  });
+
+  it('£15 vouchers only usable when spend is over £75 + bought footwear', function() {
+
+  });
 });
 
 // Needs to be able to deal with multiples of each item without angular just erroring
+
+
+// Vouchers need to be worked out better, as opposed to just being a kludge of rules.

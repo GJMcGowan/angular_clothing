@@ -4,6 +4,9 @@ clothesShop.controller('ClothesShopController', [function() {
 
   self.cartList = []
   self.cartPrice = 0
+  self.voucher5 = true
+  self.voucher10 = true
+  self.voucher15 = true
 
   self.productList = {
     "womensShoes": [{name: "Suede Shoes, Blue", price: 42.00, quantity: 4},
@@ -43,6 +46,11 @@ clothesShop.controller('ClothesShopController', [function() {
   };
 
   self.applyVoucher = function(voucher) {
-    self.cartPrice -= voucher;
+    if(voucher === 5) {
+      if(self.voucher5) {
+        self.cartPrice -= voucher;
+        self.voucher5 = false
+      };
+    };
   };
 }]);
