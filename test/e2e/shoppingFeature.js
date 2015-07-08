@@ -51,8 +51,8 @@ describe('Clothes Shopping Site', function() {
   it('£10 vouchers only usable when spend is over £50', function() {
     element(by.css(".productButton")).click();
     element(by.css("#voucher10")).click();
-    expect(element(by.css("")))
-
+    // There is a synchronisation issue that prevents this from working
+    // expect(element(by.css("error10")).getText()).toContain("You need at least £50 of items to use that voucher")
     element(by.css(".productButton")).click();
     element(by.css("#voucher10")).click();
     expect(element(by.css(".cart")).getText()).toContain("Total: 74")

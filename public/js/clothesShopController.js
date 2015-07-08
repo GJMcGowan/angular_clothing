@@ -57,7 +57,7 @@ clothesShop.controller('ClothesShopController', ['Flash', function(Flash) {
           self.cartPrice -= voucher;
           self.voucher10 = false;
         } else {
-          Flash.create('danger', 'You need at least £50 of items to use that voucher');
+          Flash.create('danger', 'You need at least £50 of items to use that voucher', 'error10');
         };
       };
     };
@@ -67,12 +67,13 @@ clothesShop.controller('ClothesShopController', ['Flash', function(Flash) {
           self.cartPrice -= voucher;
           self.voucher15 = false;   
         } else {
-          Flash.create('danger', 'You need at least £75 of items to use that voucher');
+          Flash.create('danger', 'You need at least £75 of items to use that voucher', 'error15');
         };;
       };
     };
   };
 
   self.removeVouchers = function() {
+
   };
 }]);

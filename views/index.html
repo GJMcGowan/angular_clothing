@@ -21,12 +21,7 @@
         <p>{{cartItems.name}}
         <button ng-click="ctrl.removeProduct(cartItems)" class="btn removeProduct">Remove Product</button>
         </p>
-        <div flash-message="5000" ></div> 
-        <!-- <div ng-repeat="error in ctrl.errorList" class="errors">
-          <li>
-            {{error}}
-          </li>
-        </div> -->
+        <div flash-message="5000" class="errors"></div> 
       </div>
       <p>Total: {{ctrl.cartPrice}}</p>
       <p ng-show="ctrl.cartList.length" class="vouchers">
