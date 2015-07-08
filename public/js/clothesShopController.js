@@ -3,7 +3,6 @@ clothesShop.controller('ClothesShopController', [function() {
   var self = this;
 
   self.cartList = []
-  self.cartQuantity = 0
   self.cartPrice = 0
 
   self.productList = {
@@ -33,10 +32,12 @@ clothesShop.controller('ClothesShopController', [function() {
   };
 
   self.addProduct = function(item) {
-    self.cartList.push(item)
+    self.cartList.push(item);
+    self.cartPrice += item.price;
   };
 
   self.removeProduct = function(item) {
+    self.cartPrice -= item.price;
     var index = self.cartList.indexOf(item)
     self.cartList.splice(index, 1);
   };

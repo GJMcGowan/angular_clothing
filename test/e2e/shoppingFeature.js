@@ -22,8 +22,12 @@ describe('Clothes Shopping Site', function() {
 
   it('can remove a product from the shopping cart', function() {
     element(by.css(".productButton")).click();
-    expect(element(by.css(".cart")).getText()).toContain("Suede Shoes")
     element(by.css(".removeProduct")).click();
     expect(element(by.css(".cart")).getText()).toContain("Empty")
+  });
+
+  it('can view the total price for products in the shopping cart', function() {
+    element(by.css(".productButton")).click();
+    expect(element(by.css(".cart")).getText()).toContain("Total: 42")
   });
 });
