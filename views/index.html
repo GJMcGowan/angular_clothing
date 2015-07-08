@@ -14,14 +14,14 @@
   </head>
 
   <body ng-controller="ClothesShopController as ctrl">
+    <div flash-message="5000" class="errors"></div> 
     <div class="cart">
       Shopping Cart: 
       <p ng-hide="ctrl.cartList.length">Empty</p>
-      <div ng-repeat="cartItems in ctrl.cartList">
+      <div ng-repeat="cartItems in ctrl.cartList track by $index">
         <p>{{cartItems.name}}
         <button ng-click="ctrl.removeProduct(cartItems)" class="btn removeProduct">Remove Product</button>
         </p>
-        <div flash-message="5000" class="errors"></div> 
       </div>
       <p>Total: {{ctrl.cartPrice}}</p>
       <p ng-show="ctrl.cartList.length" class="vouchers">
