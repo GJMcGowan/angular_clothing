@@ -8,19 +8,23 @@
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="js/app.js"></script>
-    <script src='js/listManagerController.js'></script>
+    <script src='js/clothesShopController.js'></script>
   </head>
 
   <body ng-controller="ClothesShopController as ctrl">
-    <ul class="list-group" ng-repeat="item in ctrl.list.womensShoes">
-      <li>
-        Product:
-        <p>{{item.name}}</p>
-        Price:
-        {{item.price}}
-        Quantity:
-        {{item.quantity}}
-      </li>
+    <ul class="list-group" ng-repeat="category in ctrl.list">
+      <div>Category:</div>
+      <ul class="Items" ng-repeat="item in category">
+        <li>
+          Product:
+          <p>{{item.name}}</p>
+          Price:
+          {{item.price}}
+          Quantity:
+          {{item.quantity}}
+        </li>
+        <br>
+      </ul>
       <br>
     </ul>
   </body>

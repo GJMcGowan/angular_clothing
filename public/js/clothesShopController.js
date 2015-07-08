@@ -3,9 +3,9 @@ clothesShop.controller('ClothesShopController', [function() {
   var self = this;
 
   self.list = {
-    "womensShoes": [{name: "Suede Shoes, Blue", price: 42.00, quantity: 4, id: 1},
+    "womensShoes": [{name: "Suede Shoes, Blue", price: 42.00, quantity: 4},
                     {name: "Almond Toe Court Shoes, Patent Black", price: 99.00,
-                    quantity: 5, id: 2}],
+                    quantity: 5}],
     "mensShoes": [{name: "Leather Driver Saddle Loafers, Tan", price: 34.00,
                   quantity: 12},
                   {name: "Flip Flops, Red", price: 19.00, quantity: 6},
