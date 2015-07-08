@@ -12,7 +12,13 @@
   </head>
 
   <body ng-controller="ClothesShopController as ctrl">
-    <ul class="list-group" ng-repeat="category in ctrl.list">
+    <div class="cart">
+      Shopping Cart: 
+      <p ng-hide="ctrl.cartList.length">Empty</p>
+      <p ng-repeat="cartItems in ctrl.cartList">{{cartItems.name}}</p>
+    </div>
+    <br>
+    <ul class="list-group" ng-repeat="category in ctrl.productList">
       <div>Category:</div>
       <ul class="Items" ng-repeat="item in category">
         <li>
@@ -22,6 +28,7 @@
           {{item.price}}
           Quantity:
           {{item.quantity}}
+          <button ng-click="ctrl.addProduct(item)" class="btn">Add to Cart</button>
         </li>
         <br>
       </ul>

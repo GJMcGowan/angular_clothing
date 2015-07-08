@@ -2,7 +2,11 @@ clothesShop.controller('ClothesShopController', [function() {
 
   var self = this;
 
-  self.list = {
+  self.cartList = []
+  self.cartQuantity = 0
+  self.cartPrice = 0
+
+  self.productList = {
     "womensShoes": [{name: "Suede Shoes, Blue", price: 42.00, quantity: 4},
                     {name: "Almond Toe Court Shoes, Patent Black", price: 99.00,
                     quantity: 5}],
@@ -27,4 +31,9 @@ clothesShop.controller('ClothesShopController', [function() {
                      {name: "Lightweight Patch Pocket￼Blazer, Dee", 
                       price: 175.50, quantity: 1}]
   };
+
+  self.addProduct = function(item) {
+    self.cartList.push(item)
+  };
+
 }]);

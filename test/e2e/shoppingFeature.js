@@ -12,6 +12,11 @@ describe('Clothes Shopping Site', function() {
   });
 
   it('has an empty shopping cart when the site loads', function() {
-    expect(element(by.css("#cart")).getText()).toContain("Empty");
+    expect(element(by.css(".cart")).getText()).toContain("Empty");
+  });
+
+  it('can add a product to the shopping cart', function() {
+    element(by.css(".btn")).click();
+    expect(element(by.css(".cart")).getText()).toContain("Suede Shoes")
   });
 });
