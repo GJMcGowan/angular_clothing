@@ -21,6 +21,11 @@
         </p>
       </div>
       <p>Total: {{ctrl.cartPrice}}</p>
+      <p>
+        Vouchers:<button id="voucher5" ng-click="ctrl.applyVoucher(5)">£5</button>
+        <button id="voucher10" ng-click="ctrl.applyVoucher(10)">£10</button>
+        <button id="voucher15" ng-click="ctrl.applyVoucher(15)">£15</button>
+      </p>
     </div>
     <br>
     <ul class="list-group" ng-repeat="category in ctrl.productList">

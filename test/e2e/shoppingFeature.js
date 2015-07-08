@@ -28,6 +28,15 @@ describe('Clothes Shopping Site', function() {
 
   it('can view the total price for products in the shopping cart', function() {
     element(by.css(".productButton")).click();
-    expect(element(by.css(".cart")).getText()).toContain("Total: 42")
+    expect(element(by.css(".cart")).getText()).toContain("Total: 42");
+  });
+
+  it('can apply a discount to the basket', function() {
+    element(by.css(".productButton")).click();
+    expect(element(by.css(".cart")).getText()).toContain("Total: 42");
+    element(by.css("#voucher5")).click();
+    expect(element(by.css(".cart")).getText()).toContain("Total: 37");
   });
 });
+
+// Needs to be able to deal with multiples of each item without angular just erroring

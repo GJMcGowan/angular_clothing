@@ -41,4 +41,8 @@ clothesShop.controller('ClothesShopController', [function() {
     var index = self.cartList.indexOf(item)
     self.cartList.splice(index, 1);
   };
+
+  self.applyVoucher = function(voucher) {
+    self.cartPrice -= voucher;
+  };
 }]);
