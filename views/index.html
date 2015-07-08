@@ -32,8 +32,8 @@
     </div>
 
     <br>
-    <ul class="list-group" ng-repeat="category in ctrl.productList">
-      <div>Category: </div>
+    <ul class="list-group" ng-repeat="(header,category) in ctrl.productList">
+      <div>Category: {{header}}</div>
       <ul class="Items" ng-repeat="item in category">
         <li>
           Product:
