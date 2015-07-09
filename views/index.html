@@ -3,8 +3,9 @@
   <head>
     <meta charset="utf-8">
     <title>Clothes Shop</title>
-    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="css/styling.css">
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
@@ -16,36 +17,34 @@
   <body ng-controller="ClothesShopController as ctrl">
     <div flash-message="5000" class="errors"></div> 
     <div class="cart">
-      Shopping Cart: 
+      <h4>Shopping Cart:</h4>
       <p ng-hide="ctrl.cartList.length">Empty</p>
       <div ng-repeat="cartItems in ctrl.cartList track by $index">
         <p>{{cartItems.name}}
-        <button ng-click="ctrl.removeProduct(cartItems)" class="btn removeProduct">Remove Product</button>
+        <button ng-click="ctrl.removeProduct(cartItems)" class="btn btn-warning removeProduct">Remove Product</button>
         </p>
       </div>
       <p>Total: {{ctrl.cartPrice}}</p>
       <p ng-show="ctrl.cartList.length" class="vouchers">
-        Vouchers:<button id="voucher5" ng-click="ctrl.applyVoucher(5)" ng-show="ctrl.voucher5">£5</button>
-        <button id="voucher10" ng-click="ctrl.applyVoucher(10)" ng-show="ctrl.voucher10">£10</button>
-        <button id="voucher15" ng-click="ctrl.applyVoucher(15)" ng-show="ctrl.voucher15">£15</button>
+        Vouchers:<button id="voucher5" ng-click="ctrl.applyVoucher(5)" ng-show="ctrl.voucher5" class="btn btn-success">£5</button>
+        <button id="voucher10" ng-click="ctrl.applyVoucher(10)" ng-show="ctrl.voucher10" class="btn btn-success">£10</button>
+        <button id="voucher15" ng-click="ctrl.applyVoucher(15)" ng-show="ctrl.voucher15" class="btn btn-success">£15</button>
       </p>
     </div>
 
     <br>
-    <ul class="list-group" ng-repeat="(header,category) in ctrl.productList">
-      <div>Category: {{header}}</div>
-      <ul class="Items" ng-repeat="item in category">
-        <li>
-          Product:
-          <p>{{item.name}}</p>
+    <div class="list-group container" ng-repeat="(header,category) in ctrl.productList">
+      <h3 class="row">{{header}}</h3>
+      <ul class="Items row" ng-repeat="item in category">
+        <li class="">
+          {{item.name}}
           Price:
           {{item.price}}
           Quantity:
           {{item.quantity}}
-          <button ng-click="ctrl.addProduct(item)" class="btn productButton">Add to Cart</button>
+          <button ng-click="ctrl.addProduct(item)" class="btn btn-info productButton">Add to Cart</button>
         </li>
-        <br>
-      </ul>
+      </div>
       <br>
     </ul>
   </body>
