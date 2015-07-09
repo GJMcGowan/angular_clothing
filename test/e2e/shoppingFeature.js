@@ -51,18 +51,8 @@ describe('Clothes Shopping Site', function() {
   it('£10 vouchers only usable when spend is over £50', function() {
     element.all(by.css(".productButton")).first().click();
     element(by.css("#voucher10")).click();
-    // Intended to test, but there are synchronisation problems
-    // expect(element(by.css(".error10")).getText()).toContain("You need at least £50 of items to use that voucher")
     element.all(by.css(".productButton")).first().click();
     element(by.css("#voucher10")).click();
     expect(element(by.css(".cart")).getText()).toContain("Total: 74")
   });
-
-  it('£15 vouchers only usable when spend is over £75 + bought footwear', function() {
-    // As above, couldn't get past the synchronisation issues with showing error messages.
-    element.all(by.css(".productButton")).first().click();
-    element(by.css("#voucher15")).click();
-    // expect(element(by.css(".error15")).getText()).toContain("You need at least £75 of items and an item of footwear to use that voucher")
-  });
-
 });
