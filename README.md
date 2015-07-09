@@ -29,11 +29,10 @@ in the command line to run the feature tests
 
 Run ```karma start test/karma.conf.js``` in the command line to run the unit tests
 
-
 ####Thoughts on Improvements:
 
-Working on this site really helped me to solidify the basics of working in Angular.
+Working on this site really helped me to solidify the basics of working in Angular and using node as a server. There are several improvements I would have to make for this to be a more polished product:
 
 * I didn't test as much as I could have - for example the feature tests are incomplete due to a synchronisation bug, and a unit test is missing for a similar reason.
-* There is some odd behaviour that I didn't quite iron out - for example my voucher system is a bit unsophisticated, so vouchers persist after the conditions which allowed you to apply them expire.
-* The CSS could be spruced up
+* There is some odd behaviour that I didn't quite iron out - for example my voucher system is a bit unsophisticated, so vouchers persist after the conditions which allowed you to apply them expired.
+* The CSS could be spruced up a lot, I only did very basic styling
