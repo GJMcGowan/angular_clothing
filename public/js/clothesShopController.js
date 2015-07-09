@@ -49,7 +49,6 @@ clothesShop.controller('ClothesShopController', ['Flash', function(Flash) {
     var index = self.cartList.indexOf(item)
     item.quantity += 1;
     self.cartList.splice(index, 1);
-    self.removeVouchers();
   };
 
   self.applyVoucher = function(voucher) {
@@ -91,6 +90,4 @@ clothesShop.controller('ClothesShopController', ['Flash', function(Flash) {
     };
   };
 
-  self.removeVouchers = function() {
-  };
 }]);
