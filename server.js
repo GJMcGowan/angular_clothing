@@ -13,10 +13,6 @@ app.get('/', function(request, response){
   response.render('index.html');
 });
 
-app.get('/SpecRunner', function(request, response) {
-  response.render('SpecRunner.html');
-});
-
 server.listen(4567, function(){
   console.log("Server listening on port 4567");
 });
