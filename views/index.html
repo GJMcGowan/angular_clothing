@@ -22,14 +22,15 @@
       <p ng-hide="ctrl.cartList.length">Empty</p>
       <div ng-repeat="cartItems in ctrl.cartList track by $index">
         <p>{{cartItems.name}}
+        £{{cartItems.price}}
         <button ng-click="ctrl.removeProduct(cartItems)" class="btn btn-warning removeProduct">Remove Product</button>
         </p>
       </div>
       <p>Total: {{ctrl.cartPrice}}</p>
       <p ng-show="ctrl.cartList.length" class="vouchers">
-        Vouchers:<button id="voucher5" ng-click="ctrl.applyVoucher(5)" ng-show="ctrl.voucher5" class="btn btn-success">£5</button>
-        <button id="voucher10" ng-click="ctrl.applyVoucher(10)" ng-show="ctrl.voucher10" class="btn btn-success">£10</button>
-        <button id="voucher15" ng-click="ctrl.applyVoucher(15)" ng-show="ctrl.voucher15" class="btn btn-success">£15</button>
+        Vouchers:<button id="voucher5" ng-click="ctrl.applyVoucher(5)" class="btn btn-success">£5</button>
+        <button id="voucher10" ng-click="ctrl.applyVoucher(10)" class="btn btn-success">£10</button>
+        <button id="voucher15" ng-click="ctrl.applyVoucher(15)" class="btn btn-success">£15</button>
       </p>
     </div>
 

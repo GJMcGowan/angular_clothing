@@ -3,6 +3,8 @@ clothesShop.factory('List', [function() {
   var cartList = [];
   var vouchers = [];
 
+  service.cartPrice = 0;
+
   service.cartList = cartList;
 
   service.productList = {
@@ -37,10 +39,11 @@ clothesShop.factory('List', [function() {
       result += cartList[i].price;
     };
     for (var i = vouchers.length - 1; i >= 0; i--) {
-      result -= vouchers;
+      result -= vouchers[i];
     };
     // Currently the way to deal with JS number oddness
     result = parseFloat(result.toPrecision(12));
+    service.cartPrice += result;
     return result;
   };
 
