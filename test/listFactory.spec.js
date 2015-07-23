@@ -42,6 +42,13 @@ describe('factory: List', function() {
       expect(list.cartList).toEqual([]);
     });
 
+    it('can remove the same items from the cart one by one', function() {
+      list.addProduct(sample);
+      list.addProduct(sample);
+      list.removeProduct(sample);
+      expect(list.cartList).toEqual([sample]);
+    });
+
     it('knows the total price of items in the cart', function() {
       list.addProduct(sample);
       list.addProduct(sample);
@@ -88,6 +95,24 @@ describe('factory: List', function() {
       list.addProduct(sample);
       list.applyVoucher(15);
       expect(list.cartPrice).toEqual(126.98);
+    });
+
+    it('removes a £10 voucher when its conditions no longer apply', function() {
+      list.addProduct(sample);
+      list.addProduct(sample);
+      list.applyVoucher(10);
+      expect(list.cartPrice).toEqual(74);
+      list.removeProduct(sample);
+      expect(list.cartPrice).toEqual(42);
+    });
+
+    it('removes a £15 voucher when its conditions no longer apply', function() {
+      list.addProduct(not_shoes);
+      list.addProduct(not_shoes);
+      list.addProduct(sample);
+      list.applyVoucher(15);
+      list.removeProduct(sample);
+      expect(list.cartPrice).toEqual(99.98);
     });
   });
 });

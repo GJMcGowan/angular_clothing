@@ -42,7 +42,6 @@ clothesShop.factory('List', [function() {
     for (var i = vouchers.length - 1; i >= 0; i--) {
       result -= vouchers[i];
     };
-    // Currently the way to deal with JS number oddness
     result = parseFloat(result.toPrecision(12));
     service.cartPrice = result;
     return result;
@@ -62,38 +61,60 @@ clothesShop.factory('List', [function() {
     // var index = cartList.indexOf(item)
     item.quantity += 1;
     cartList.splice(cartList.indexOf(item), 1);
+    voucherChecker();
     service.getCartPrice();
   };
 
   service.applyVoucher = function(voucher) {
-    var used = false;
-    for(i = vouchers.length - 1; i >= 0; i--){
-      if(vouchers[i] === voucher) {
-        used = true;
-      };
+    if(voucherPresent(voucher)){
+      return;
     };
+    // Add an error message
+    // var show = 'You have already used that voucher';
+    // Flash.create('danger', show, 'error10');
     if(voucher === 5) {
       vouchers.push(voucher)
-    } else if (voucher === 10) {
-      applyVoucher10();
-    } else if (voucher === 15) {
-      applyVoucher15();
+    } else if (voucher === 10 && checkVoucher10()) {
+      vouchers.push(10);
+    } else if (voucher === 15 && checkVoucher15()) {
+      vouchers.push(15);
     } else {
       // Flash.create('danger', 'Invalid voucher', 'error10');
     };
     service.getCartPrice();
   };
 
-  var applyVoucher10 = function() {
-    if(service.getCartPrice() >= 50) {
-      vouchers.push(10);
-    } else {
-      // var show = 'You need at least £50 of items to use that voucher'
-      // Flash.create('danger', show, 'error10');
+  var voucherChecker = function() {
+    for (var i = vouchers.length - 1; i >= 0; i--) {
+      if((vouchers[i] === 10) && (!checkVoucher10())) {
+        vouchers.splice(i, 1);
+        // voucher removed
+      } else if((vouchers[i] === 15) && (!checkVoucher15())) {
+        vouchers.splice(i, 1);
+        // voucher removed
+      } else {
+        // Do nothing
+      };
     };
   };
 
-  var applyVoucher15 = function() {
+  var voucherPresent = function(voucher) {
+    for(i = vouchers.length - 1; i >= 0; i--){
+      if(vouchers[i] === voucher) {
+        return true;
+      };
+    };
+  };
+
+  var checkVoucher10 = function() {
+    if(service.getCartPrice() >= 50){
+      return true;
+    };
+    // var show = 'You need at least £50 of items to use that voucher'
+    // Flash.create('danger', show, 'error10');
+  };
+
+  var checkVoucher15 = function() {
     var shoes = false;
     for (var i = cartList.length - 1; i >= 0; i--) {
       if(cartList[i].category.indexOf("Footwear") >= 0) {
@@ -101,11 +122,10 @@ clothesShop.factory('List', [function() {
       };
     };
     if(service.getCartPrice() >= 75 && shoes) {
-      vouchers.push(15);
-    } else {
-      // var show = 'You need at least £75 of items and an item of footwear to use that voucher'
-      // Flash.create('danger', show, 'error15');
+      return true;
     };
+    // var show = 'You need at least £75 of items and an item of footwear to use that voucher'
+    // Flash.create('danger', show, 'error15');
   };
 
   return service;
