@@ -35,7 +35,7 @@
     </div>
 
     <br>
-    <div class="list-group container" ng-repeat="(header,category) in ctrl.list.productList">
+    <div class="list-group container" ng-repeat="(header,category) in ctrl.productList">
       <h3 class="row">{{header}}</h3>
       <ul class="Items row" ng-repeat="item in category">
         <li class="">
@@ -44,6 +44,7 @@
           {{item.price}}
           Quantity:
           {{item.quantity}}
+          <img ng-src="{{item.image}}">
           <button ng-click="ctrl.list.addProduct(item)" class="btn btn-info productButton">Add to Cart</button>
         </li>
       </div>

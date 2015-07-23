@@ -97,6 +97,13 @@ describe('factory: List', function() {
       expect(list.cartPrice).toEqual(126.98);
     });
 
+    it('removes a £5 voucher when there are no items', function() {
+      list.addProduct(sample);
+      list.applyVoucher(5);
+      list.removeProduct(sample);
+      expect(list.cartPrice).toEqual(0);
+    });
+
     it('removes a £10 voucher when its conditions no longer apply', function() {
       list.addProduct(sample);
       list.addProduct(sample);
