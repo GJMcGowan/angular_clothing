@@ -44,7 +44,8 @@ describe('factory: List', function() {
 
     it('knows the total price of items in the cart', function() {
       list.addProduct(sample);
-      expect(list.getCartPrice()).toEqual(42);
+      list.addProduct(sample);
+      expect(list.cartPrice).toEqual(84);
     });
 
     it('adding an item to the cart lowers the quantity', function() {
@@ -65,28 +66,28 @@ describe('factory: List', function() {
     it('can apply £5 voucher at any time', function() {
       list.addProduct(sample);
       list.applyVoucher(5);
-      expect(list.getCartPrice()).toEqual(37);      
+      expect(list.cartPrice).toEqual(37);      
     });
 
     it('cannot apply a £10 voucher unless the total price is over £50', function() {
       list.addProduct(sample);
       list.applyVoucher(10);
-      expect(list.getCartPrice()).toEqual(42);
+      expect(list.cartPrice).toEqual(42);
       list.addProduct(sample);
       list.applyVoucher(10);
-      expect(list.getCartPrice()).toEqual(74);
+      expect(list.cartPrice).toEqual(74);
     });
 
     it('cannot apply £15 voucher unless total price >= £75 and shoes were bought', function() {
       list.addProduct(not_shoes);
       list.applyVoucher(15);
-      expect(list.getCartPrice()).toEqual(49.99);
+      expect(list.cartPrice).toEqual(49.99);
       list.addProduct(not_shoes);
       list.applyVoucher(15);
-      expect(list.getCartPrice()).toEqual(99.98);
+      expect(list.cartPrice).toEqual(99.98);
       list.addProduct(sample);
       list.applyVoucher(15);
-      expect(list.getCartPrice()).toEqual(126.98);
+      expect(list.cartPrice).toEqual(126.98);
     });
   });
 });

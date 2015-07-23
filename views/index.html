@@ -19,23 +19,23 @@
     <div flash-message="5000" class="errors"></div> 
     <div class="cart">
       <h4>Shopping Cart:</h4>
-      <p ng-hide="ctrl.cartList.length">Empty</p>
-      <div ng-repeat="cartItems in ctrl.cartList track by $index">
+      <p ng-hide="ctrl.list.cartList.length">Empty</p>
+      <div ng-repeat="cartItems in ctrl.list.cartList track by $index">
         <p>{{cartItems.name}}
         £{{cartItems.price}}
-        <button ng-click="ctrl.removeProduct(cartItems)" class="btn btn-warning removeProduct">Remove Product</button>
+        <button ng-click="ctrl.list.removeProduct(cartItems)" class="btn btn-warning removeProduct">Remove Product</button>
         </p>
       </div>
-      <p>Total: {{ctrl.cartPrice}}</p>
-      <p ng-show="ctrl.cartList.length" class="vouchers">
-        Vouchers:<button id="voucher5" ng-click="ctrl.applyVoucher(5)" class="btn btn-success">£5</button>
-        <button id="voucher10" ng-click="ctrl.applyVoucher(10)" class="btn btn-success">£10</button>
-        <button id="voucher15" ng-click="ctrl.applyVoucher(15)" class="btn btn-success">£15</button>
+      <p>Total: {{ctrl.list.cartPrice}}</p>
+      <p ng-show="ctrl.list.cartList.length" class="vouchers">
+        Vouchers:<button id="voucher5" ng-click="ctrl.list.applyVoucher(5)" class="btn btn-success">£5</button>
+        <button id="voucher10" ng-click="ctrl.list.applyVoucher(10)" class="btn btn-success">£10</button>
+        <button id="voucher15" ng-click="ctrl.list.applyVoucher(15)" class="btn btn-success">£15</button>
       </p>
     </div>
 
     <br>
-    <div class="list-group container" ng-repeat="(header,category) in ctrl.productList">
+    <div class="list-group container" ng-repeat="(header,category) in ctrl.list.productList">
       <h3 class="row">{{header}}</h3>
       <ul class="Items row" ng-repeat="item in category">
         <li class="">
@@ -44,7 +44,7 @@
           {{item.price}}
           Quantity:
           {{item.quantity}}
-          <button ng-click="ctrl.addProduct(item)" class="btn btn-info productButton">Add to Cart</button>
+          <button ng-click="ctrl.list.addProduct(item)" class="btn btn-info productButton">Add to Cart</button>
         </li>
       </div>
       <br>

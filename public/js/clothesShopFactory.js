@@ -2,8 +2,9 @@ clothesShop.factory('List', [function() {
   var service = {};
   var cartList = [];
   var vouchers = [];
+  var cartPrice = 0;
 
-  service.cartPrice = 0;
+  service.cartPrice = cartPrice;
 
   service.cartList = cartList;
 
@@ -43,7 +44,7 @@ clothesShop.factory('List', [function() {
     };
     // Currently the way to deal with JS number oddness
     result = parseFloat(result.toPrecision(12));
-    service.cartPrice += result;
+    service.cartPrice = result;
     return result;
   };
 
@@ -54,12 +55,14 @@ clothesShop.factory('List', [function() {
     } else {
       // Flash.create('danger', 'That item is out of stock', 'stockError');
     };
+    service.getCartPrice();
   };
 
   service.removeProduct = function(item) {
-    var index = cartList.indexOf(item)
+    // var index = cartList.indexOf(item)
     item.quantity += 1;
-    cartList.splice(index, 1);
+    cartList.splice(cartList.indexOf(item), 1);
+    service.getCartPrice();
   };
 
   service.applyVoucher = function(voucher) {
@@ -72,15 +75,16 @@ clothesShop.factory('List', [function() {
     if(voucher === 5) {
       vouchers.push(voucher)
     } else if (voucher === 10) {
-      service.applyVoucher10();
+      applyVoucher10();
     } else if (voucher === 15) {
-      service.applyVoucher15();
+      applyVoucher15();
     } else {
       // Flash.create('danger', 'Invalid voucher', 'error10');
     };
+    service.getCartPrice();
   };
 
-  service.applyVoucher10 = function() {
+  var applyVoucher10 = function() {
     if(service.getCartPrice() >= 50) {
       vouchers.push(10);
     } else {
@@ -89,7 +93,7 @@ clothesShop.factory('List', [function() {
     };
   };
 
-  service.applyVoucher15 = function() {
+  var applyVoucher15 = function() {
     var shoes = false;
     for (var i = cartList.length - 1; i >= 0; i--) {
       if(cartList[i].category.indexOf("Footwear") >= 0) {
