@@ -28,7 +28,7 @@ clothesShop.controller('ClothesShopController', ['$http', '$scope', 'Flash', 'Li
                       quantity: 5, category: "Womens Formal", image: "images/mid_twist_dress_pink.jpg"}],
     "Mens Formal":[{name: "Sharkskin Waistcoat, Charcoal", price: 75.00,
                       quantity: 6, category: "Mens Formal", image: "images/charcoal_waistcoat.jpeg"},
-                     {name: "Lightweight Patch Pocket￼Blazer, Deer", 
+                     {name: "Lightweight Patch Pocket￼ Blazer, Deer", 
                       price: 175.50, quantity: 1, category: "Mens Formal", image: "images/deer_blazer.jpeg"}]
   };
 

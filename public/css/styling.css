@@ -1,4 +1,18 @@
 img {
-  width: 15%;
-  height: 15%;
+  width: 30%;
+  height: 30%;
+}
+
+body {
+  padding-top: 70px;
+  font-size: 16px
+}
+
+.categories {
+  text-align: center;
+}
+
+.cart {
+  text-align: right;
+  padding-right: 3%;
 }
