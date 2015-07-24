@@ -62,5 +62,9 @@ describe('Clothes Shopping Site', function() {
   it('£15 vouchers only usuable when spend is over £75, and footwear was bought', function() {
     element.all(by.css(".productButton")).first().click();
     element(by.css("#voucher15")).click();
+    expect(element(by.css(".cart")).getText()).toContain("Total: £42")
+    element.all(by.css(".productButton")).first().click();
+    element(by.css("#voucher15")).click();
+    expect(element(by.css(".cart")).getText()).toContain("Total: £69")
   });
 });
