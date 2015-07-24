@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/styling.css">
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/bootstrap/js/dropdown.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/angular-flash-alert/dist/angular-flash.js"></script>
     <script src="js/app.js"></script>
@@ -16,44 +17,41 @@
   </head>
 
   <body ng-controller="ClothesShopController as ctrl">
-    <div class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <button class="show_cart btn navbar-btn navbar-right" ng-click="hide = !hide">Shopping Cart ({{ctrl.list.cartList.length}})</button>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="dropdown container">
+        <button class="show-cart btn navbar-btn navbar-right dropdown-toggle" data-toggle="dropdown">Shopping Cart ({{ctrl.list.cartList.length}})</button>
+        <div class="cart dropdown-menu dropdown-menu-right" ng-click="$event.stopPropagation()">
+          <ul>
+          <li ng-hide="ctrl.list.cartList.length">Empty</li>
+          <li ng-repeat="cartItems in ctrl.list.cartList track by $index">
+            <p>{{cartItems.name}}
+            £{{cartItems.price}}
+            <span class="remove-product" ng-click="ctrl.list.removeProduct(cartItems)"><span class="glyphicon glyphicon-remove"></span></span>
+            </p>
+          </li>
+          <li>Total: £{{ctrl.list.cartPrice}}</li>
+          <li ng-show="ctrl.list.cartList.length" class="vouchers">
+            Vouchers: <button id="voucher5" ng-click="ctrl.list.applyVoucher(5)" class="btn btn-success">£5</button>
+            <button id="voucher10" ng-click="ctrl.list.applyVoucher(10)" class="btn btn-success">£10</button>
+            <button id="voucher15" ng-click="ctrl.list.applyVoucher(15)" class="btn btn-success">£15</button>
+          </li>
+          </ul>
+        </div>
       </div>
     </div>
     <div flash-message="4000" class="errors"></div>
     
-    <div class="cart" ng-show="hide">
-      <table class="table">
-        <p ng-hide="ctrl.list.cartList.length">Empty</p>
-        <div ng-repeat="cartItems in ctrl.list.cartList track by $index">
-          <p>{{cartItems.name}}
-          £{{cartItems.price}}
-          <span ng-click="ctrl.list.removeProduct(cartItems)"><span class="glyphicon glyphicon-remove"></span></span>
-          </p>
-        </div>
-        <p>Total: £{{ctrl.list.cartPrice}}</p>
-        <p ng-show="ctrl.list.cartList.length" class="vouchers">
-          Vouchers: <button id="voucher5" ng-click="ctrl.list.applyVoucher(5)" class="btn btn-success">£5</button>
-          <button id="voucher10" ng-click="ctrl.list.applyVoucher(10)" class="btn btn-success">£10</button>
-          <button id="voucher15" ng-click="ctrl.list.applyVoucher(15)" class="btn btn-success">£15</button>
-        </p>
-      </table>
-    </div>
-
-    <div class="" ng-repeat="(header,category) in ctrl.productList">
-      <div class="categories container">
-        <h3>{{header}}</h3>
-        <div class="row">
-          <ul class="Items" ng-repeat="item in category">
-            <li class="col-md-4">
-              <h4>{{item.name}}</h4>
-              <p>Price: £{{item.price}}</p>
-              <p>Quantity: {{item.quantity}}</p>
-              <p><img ng-src="{{item.image}}"></p>
-              <p><button ng-click="ctrl.list.addProduct(item)" class="btn btn-info productButton">Add to Cart</button></p>
-            </li>
-          </ul>
+    <div class="categories container" ng-repeat="(header,category) in ctrl.list.productList">
+      <h3>{{header}}</h3>
+      <div class="row">
+        <div class="Items" ng-repeat="item in category" ng-click="$event.stopPropagation()">
+          <div class="col-md-6 products">
+            <h4>{{item.name}}</h4>
+            <p>Price: £{{item.price}}</p>
+            <p>Quantity: {{item.quantity}}</p>
+            <p><img ng-src="{{item.image}}"></p>
+            <p><button ng-click="ctrl.list.addProduct(item)" class="btn btn-info productButton">Add to Cart</button></p>
+          </div>
         </div>
       </div>
     </div>

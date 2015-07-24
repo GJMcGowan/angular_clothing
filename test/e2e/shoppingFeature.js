@@ -1,6 +1,7 @@
 describe('Clothes Shopping Site', function() {
   beforeEach(function() {
     browser.get("http://localhost:4567");
+    element.all(by.css(".show-cart")).first().click();
   });
 
   it('has a title', function() {
@@ -22,26 +23,27 @@ describe('Clothes Shopping Site', function() {
 
   it('can remove a product from the shopping cart', function() {
     element.all(by.css(".productButton")).first().click();
-    element(by.css(".removeProduct")).click();
+    element(by.css(".remove-product")).click();
     expect(element(by.css(".cart")).getText()).toContain("Empty")
   });
 
   it('can view the total price for products in the shopping cart', function() {
     element.all(by.css(".productButton")).first().click();
-    expect(element(by.css(".cart")).getText()).toContain("Total: 42");
+    expect(element(by.css(".cart")).getText()).toContain("Total: £42");
   });
 
   it('can apply a discount to the basket', function() {
     element.all(by.css(".productButton")).first().click();
-    expect(element(by.css(".cart")).getText()).toContain("Total: 42");
+    expect(element(by.css(".cart")).getText()).toContain("Total: £42");
     element(by.css("#voucher5")).click();
-    expect(element(by.css(".cart")).getText()).toContain("Total: 37");
+    expect(element(by.css(".cart")).getText()).toContain("Total: £37");
   });
 
   it('vouchers can only be applied once', function() {
     element.all(by.css(".productButton")).first().click();
     element(by.css("#voucher5")).click();
-    expect(element(by.css("#voucher5")).isDisplayed()).not.toBeTruthy();
+    element(by.css("#voucher5")).click();
+    expect(element(by.css(".cart")).getText()).toContain("Total: £37")
   });
 
   it('vouchers are not displayed when basket is empty', function() {
@@ -51,8 +53,14 @@ describe('Clothes Shopping Site', function() {
   it('£10 vouchers only usable when spend is over £50', function() {
     element.all(by.css(".productButton")).first().click();
     element(by.css("#voucher10")).click();
+    expect(element(by.css(".cart")).getText()).toContain("Total: £42")
     element.all(by.css(".productButton")).first().click();
     element(by.css("#voucher10")).click();
-    expect(element(by.css(".cart")).getText()).toContain("Total: 74")
+    expect(element(by.css(".cart")).getText()).toContain("Total: £74")
+  });
+
+  it('£15 vouchers only usuable when spend is over £75, and footwear was bought', function() {
+    element.all(by.css(".productButton")).first().click();
+    element(by.css("#voucher15")).click();
   });
 });
