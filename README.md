@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/GJMcGowan/angular_clothing.svg?branch=master)](https://travis-ci.org/GJMcGowan/angular_clothing.svg?branch=master)
+
 #####A simple, one page clothes shopping website, developed in AngularJS and using a node express server. I used Karma for unit testing and Protractor for feature testing.
 
 I had user stories to guide my features:
@@ -27,7 +29,7 @@ Run :
 * ```protractor test/e2e/conf.js``` 
 in the command line to run the feature tests
 
-Run ```karma start test/karma.conf.js``` in the command line to run the unit tests
+Run ```npm test``` in the command line to run the unit tests
 
 ####Thoughts on Improvements:
 
