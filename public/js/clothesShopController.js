@@ -2,5 +2,4 @@ clothesShop.controller('ClothesShopController', ['$http', '$scope', 'List', func
   var self = this;
 
   self.list = List;
-
 }]);
