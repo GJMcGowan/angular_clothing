@@ -1,6 +1,8 @@
 [![Build Status](https://travis-ci.org/GJMcGowan/angular_clothing.svg?branch=master)](https://travis-ci.org/GJMcGowan/angular_clothing.svg?branch=master)
 
-#####A simple, one page clothes shopping website, developed in AngularJS and using a node express server. I used Karma for unit testing and Protractor for feature testing.
+#####A simple, one page clothes shopping website, developed in AngularJS and using a node express server. I used Karma for unit testing and Protractor for feature testing. Travis CI provides continious integration testing. Bootstrap was used for much of the styling.
+
+![Screenshot](/public/images/Screenshot.png)
 
 I had user stories to guide my features:
 * As a User, I can add a product to my shopping cart.
@@ -12,29 +14,30 @@ I had user stories to guide my features:
 * As a User, I am unable to purchase Out of Stock products to the shopping cart
 
 ####To use the site:
-Clone this repo
-
-Run ```bower install``` and ```npm install``` in the command line
-
-Run ```npm start``` in the command line
-
-Navigate to ```localhost:4567``` in your browser.
-
+* Clone this repo
+* Run ```bower install``` and ```npm install``` in the command line
+* Run ```npm start``` in the command line
+* Navigate to ```localhost:4567``` in your browser.
 
 ####To test:
 
-Run :
+For unit tests, run ```npm test``` in the command line
+
+For feature tests, run the following in the command line:
 * ```npm start ```
 * ```webdriver-manager start```
 * ```protractor test/e2e/conf.js``` 
-in the command line to run the feature tests
 
-Run ```npm test``` in the command line to run the unit tests
+####Approach
+When I first saw the specification for this task, I automatically thought of making it a one-page app, using Javascript. I decided to use the Angular framework as I had enough experience with it to get me started, but not enough that I couldn't learn something by doing it.
 
-####Thoughts on Improvements:
+Initially, I made a version which satisfied most of the user stories (most of the time) but had several bugs (e.g. around vouchers) and didn't follow MVC principles properly (with all the logic being in the controller). It also had very little styling.
 
-Working on this site really helped me to solidify the basics of working in Angular and using node as a server. There are several improvements I would have to make for this to be a more polished product:
+This version is significantly improved - the voucher bugs were removed, the app logic was moved to a factory and I styled it more using bootstrap. While doing this I had a few problems with making the data bindings work properly now that the logic was in a factory ([this article really helped me](https://stsc3000.github.io/blog/2013/10/26/a-tale-of-frankenstein-and-binding-to-service-values-in-angular-dot-js/)) and with the logic for add/removing vouchers (I completely overhauled the way that vouchers were being sorted to make this easier).
 
-* I didn't test as much as I could have - for example the feature tests are incomplete due to a synchronisation bug, and a unit test is missing for a similar reason.
-* There is some odd behaviour that I didn't quite iron out - for example my voucher system is a bit unsophisticated, so vouchers persist after the conditions which allowed you to apply them expired.
-* The CSS could be spruced up a lot, I only did very basic styling
+####Improvements
+
+I tried to make this project as good as possible while keeping it simple and not adding extra features. However, if I did want to improve it by adding more features, I have several ideas on how to do so:
+* ######Using a datbase: I currently just have the data structure (containing clothes names etc.) in the factory as an object. I recognise this isn't scalable, or usually a good idea! If I were to expand this app beyond a quick demo, I would add a database to sort this - likely MongoDB.
+* ######Users/Persistence: Currently a page refresh removes items from the cart - in the future I would make there be logged in users with persistent carts.
+* ######Checkout: Users can add items to carts but not buy anything, so I would add a checkout - likely integrating Stripe or some other service.
